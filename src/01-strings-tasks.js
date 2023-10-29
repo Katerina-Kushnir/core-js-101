@@ -34,7 +34,7 @@ function concatenateStrings(value1, value2) {
  *   'b'     => 1
  *   ''      => 0
  */
-function getStringLength( value ) {
+function getStringLength(value) {
   return value.length;
 }
 
@@ -51,7 +51,7 @@ function getStringLength( value ) {
  *   'John','Doe'      => 'Hello, John Doe!'
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(firstName, lastName ) {
+function getStringFromTemplate(firstName, lastName) {
   return `Hello, ${firstName} ${lastName}!`;
 }
 
@@ -111,11 +111,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-  let str = '';
-  for (let i = 0; i < count; i++) {
-    str += value;
-  }
-  return str;
+  return value.repeat(count);
 }
 
 /**
@@ -149,7 +145,7 @@ function removeFirstOccurrences(str, value) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag( str ) {
+function unbracketTag(str) {
   return str.slice(1, -1);
 }
 
@@ -183,7 +179,7 @@ function convertToUpperCase(str) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails( str ) {
+function extractEmails(str) {
   return str.split(';');
 }
 
@@ -212,11 +208,11 @@ function extractEmails( str ) {
  */
 function getRectangleString(width, height) {
   const horizontalBorder = '─'.repeat(width - 2);
-  const verticalBorder = '│' + ' '.repeat(width - 2) + '│\n';
+  const verticalBorder = `│${' '.repeat(width - 2)}│\n`;
 
-  const rectangleString = '┌' + horizontalBorder + '┐\n' +
-                          (verticalBorder.repeat(height - 2)).trim() +
-                          '└' + horizontalBorder + '┘\n';
+  const rectangleString = `┌${horizontalBorder}┐\n${
+    (verticalBorder.repeat(height - 2)).trim()
+  }└${horizontalBorder}┘\n`;
 
   return rectangleString;
 }
@@ -239,10 +235,10 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  return str.replace(/[a-zA-Z]/g, function(char) {
-    let charCode = char.charCodeAt(0);
-    let offset = charCode <= 90 ? 65 : 97;
-    return String.fromCharCode((charCode - offset + 13) % 26 + offset);
+  return str.replace(/[a-zA-Z]/g, (char) => {
+    const charCode = char.charCodeAt(0);
+    const offset = charCode <= 90 ? 65 : 97;
+    return String.fromCharCode(((charCode - offset + 13) % 26) + offset);
   });
 }
 
@@ -259,7 +255,7 @@ function encodeToRot13(str) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString( value ) {
+function isString(value) {
   return typeof value === 'string' || (value instanceof String);
 }
 
@@ -288,16 +284,16 @@ function isString( value ) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId( value ) {
+function getCardId(value) {
   const suits = '♣♦♥♠';
   const ranks = 'A23456789XJQK';
-  
+
   const suit = value.slice(-1);
   const rank = value.slice(0, -1);
-  
+
   const suitIndex = suits.indexOf(suit);
   const rankIndex = ranks.indexOf(rank);
-  
+
   return suitIndex * ranks.length + rankIndex;
 }
 
